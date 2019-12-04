@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# getversion - get the librarty version by analyzing its header
+#
+# Done this way so there's a single point of truth about the version.
+#
+MAJOR=`sed <ping_lib.h -n -e "/MAJOR/s/#define PINGLIB_MAJOR  *//p"`
+MINOR=`sed <ping_lib.h -n -e "/MINOR/s/#define PINGLIB_MINOR  *//p"`
+RELEASE=`sed <ping_lib.h -n -e "/RELEASE/s/#define PINGLIB_RELEASE  *//p"`
+echo ${MAJOR}.${MINOR}.${RELEASE}
