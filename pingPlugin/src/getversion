@@ -4,7 +4,7 @@
 #
 # Done this way so there's a single point of truth about the version.
 #
-MAJOR=`sed <ping_lib.h -n -e "/MAJOR/s/#define PINGLIB_MAJOR  *//p"`
-MINOR=`sed <ping_lib.h -n -e "/MINOR/s/#define PINGLIB_MINOR  *//p"`
-RELEASE=`sed <ping_lib.h -n -e "/RELEASE/s/#define PINGLIB_RELEASE  *//p"`
+MAJOR=`sed <pingPlugin_lib.h -n -e "/MAJOR/s/#define PINGPLUGINLIB_MAJOR  *//p"`
+MINOR=`sed <pingPlugin_lib.h -n -e "/MINOR/s/#define PINGPLUGINLIB_MINOR  *//p"`
+RELEASE=`sed <pingPlugin_lib.h -n -e "/RELEASE/s/#define PINGPLUGINLIB_RELEASE  *//p"`
 echo ${MAJOR}.${MINOR}.${RELEASE}
