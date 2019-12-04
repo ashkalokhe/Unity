@@ -23,5 +23,12 @@ int main(int argc, char **argv)
 void ping()
     {
     printf("Hello to native PingPlugin\n");
+    int x;
+    x = system("ping -c 1 ifconfig.me");
+    if(x == 0)
+            printf("Success\n");
+        else
+            printf("Failed\n");
+            
     }
 
