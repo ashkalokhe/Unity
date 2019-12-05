@@ -3,8 +3,8 @@
 #
 OFLAGS = -O0 -g
 OFLAGS  = -O2
-CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-
+CFLAGS  = -fPIC -Wall -Wno-format-truncation $(OFLAGS)
+#-std=gnu99 
 SHELL = /bin/sh
 TAR = tar
 INSTALL = install
@@ -23,13 +23,9 @@ LIBMINOR=0
 LIBPOINT=0
 LIBVER=$(LIBMAJOR).$(LIBMINOR).$(LIBPOINT)
 
-SOURCES = pingPlugin.c
+SOURCES = pingPlugin.cpp
 HEADERS = pingPlugin.h pingPlugin_lib.h
 OBJECTS = $(SOURCES:.c=.o)
-
-#USOURCES = qprintf.c quantize.c getarg.c 
-#UHEADERS = getarg.h
-#UOBJECTS = $(USOURCES:.c=.o)
 
 # Some utilities are installed
 INSTALLABLE = \

@@ -2,12 +2,11 @@
 using System;
 using System.Runtime.InteropServices;
 
-class PingPlugin {
-
+public class PingPlugin {
   private const string Import = "pingPlugin";
-
+  
   [DllImport(Import)]
-  static extern void ping();
+  public static extern IntPtr Ping_Native(string address);
 
   public static void Main(string[] args)
     {
@@ -30,6 +29,32 @@ class PingPlugin {
       }
 
         Console.WriteLine ("Hello to managed PingPlugin");
-        ping();
+        
+       //IntPtr res = Ping(args[0]);
+       Ping.Execute(args[0]);
     }
+}
+
+public class Ping {
+
+  private Ping(string ipAddress) {
+    IP = ipAddress;
+  }
+
+  public string IP { get; set; }
+  public int Time { get; set; }
+  public bool IsDone { get; set; }
+
+  public static Ping Execute(string ipAddress) {
+    var p = new Ping(ipAddress);
+    p.Ping_Internal();
+    return p;
+  }
+
+  private void Ping_Internal() {
+    // dll import call
+    // returns and populates 
+    IntPtr res = PingPlugin.Ping_Native(this.IP);
+
+  }
 }
