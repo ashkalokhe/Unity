@@ -11,7 +11,7 @@
 #include <string.h>
 #include "pingPlugin.h"
 #include "pingPlugin_lib.h"
-#include <sys/time.h> 
+#include <ctime>
 
 /******************************************************************************
  Main sequence
@@ -25,30 +25,28 @@ PingResult* Ping(const char address[])
     {
     PingResult* res = (PingResult*)malloc(sizeof(PingResult));
     res->isDone = false;
-    struct timeval t1, t2;
-    
+
     printf("Hello to native PingPlugin\n");
     char c[255];
     strcpy(c, "ping -c 1 ");
     strcat(c, address);
     int x;
 
-    // start time
-    gettimeofday(&t1, NULL);
+    // start time≈
+    std::clock_t start = std::clock();
     
     // PING
     x = system(c);
 
     // stop timer
-    gettimeofday(&t2, NULL);
 
-    // compute and print the elapsed time in millisec
-    res->time = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
-    res->time += (t2.tv_usec - t1.tv_usec) / 1000.0; 
+    // compute and print the elapsed time in seconds
+    res->time = ( std::clock() - start ) / CLOCKS_PER_SEC;
+
     
     res->isDone = !x;
     if(x == 0)
-            printf("\nNative:Success\t isDone(%s) ip(%s) time(%d-ms)", res->isDone == 0 ? "false" : "true", address, res->time);
+            printf("\nNative:Success\t isDone(%s) ip(%s) time(%d/s)", res->isDone == 0 ? "false" : "true", address, res->time);
         else
             printf("\nNative:Failed");
     return res;
