@@ -6,7 +6,8 @@ public class PingPlugin {
   private const string Import = "pingPlugin";
   
   [DllImport(Import)]
-  public static extern IntPtr Ping_Native(string address);
+  [return:MarshalAs(UnmanagedType.LPStruct)]
+  public static extern PingResult Ping_Native(string address);
 
   public static void Main(string[] args)
     {
@@ -28,11 +29,16 @@ public class PingPlugin {
               break;
       }
 
-        Console.WriteLine ("Hello to managed PingPlugin");
+       Console.WriteLine ("Hello to managed PingPlugin");
         
-       //IntPtr res = Ping(args[0]);
        Ping.Execute(args[0]);
     }
+}
+
+[StructLayout(LayoutKind.Sequential)]
+public class PingResult {
+  public int time;
+  public bool isDone;
 }
 
 public class Ping {
@@ -48,13 +54,16 @@ public class Ping {
   public static Ping Execute(string ipAddress) {
     var p = new Ping(ipAddress);
     p.Ping_Internal();
+
+    Console.WriteLine($"Managed output - time={p.Time}, isDone={p.IsDone}");
     return p;
   }
 
   private void Ping_Internal() {
     // dll import call
     // returns and populates 
-    IntPtr res = PingPlugin.Ping_Native(this.IP);
-
+    var res = PingPlugin.Ping_Native(this.IP);
+    this.IsDone = res.isDone;
+    this.Time = res.time;
   }
 }

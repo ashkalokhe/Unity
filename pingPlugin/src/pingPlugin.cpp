@@ -48,9 +48,9 @@ PingResult* Ping(const char address[])
     
     res->isDone = !x;
     if(x == 0)
-            printf("\nSuccess\t isDone(%s) ip(%s) time(%d-ms)", res->isDone == 0 ? "false" : "true", address, res->time);
+            printf("\nNative:Success\t isDone(%s) ip(%s) time(%d-ms)", res->isDone == 0 ? "false" : "true", address, res->time);
         else
-            printf("\nFailed");
+            printf("\nNative:Failed");
     return res;
     }
 
