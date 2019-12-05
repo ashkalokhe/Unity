@@ -25,7 +25,7 @@ LIBVER=$(LIBMAJOR).$(LIBMINOR).$(LIBPOINT)
 
 SOURCES = pingPlugin.cpp
 HEADERS = pingPlugin.h pingPlugin_lib.h
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(SOURCES:.cpp=.o)
 
 # Some utilities are installed
 INSTALLABLE = \
