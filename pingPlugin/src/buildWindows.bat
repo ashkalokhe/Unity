@@ -10,9 +10,6 @@
 setlocal enabledelayedexpansion
 
 REM --------- pingPlugin
-
-cl /c /EHsc pingPlugin.cpp
-lib *.obj
 mkdir .\..\assets\win
-copy /y pingPlugin.lib .\..\assets\win\pingPlugin.lib
 
+cl /EHsc pingPlugin.cpp /link /dll /out:.\..\assets\win\pingPlugin.dll
