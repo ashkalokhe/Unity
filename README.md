@@ -19,3 +19,7 @@ Platform appropiate pluginManaged.dll needs to be added to UnityHub Project unde
    ..\Assets\Plugins\win\pingPluginManaged.exe "www.google.com"
 
 
+#Steps for executing UnityProject-PingMac
+1. I have all compiled win/mac dlls added to the respective projects.
+2. PingMac is a UnityProject which can directly open in Unity and execute with added mac compiled libpingPlugin.1.dylib, pingPluginManaged.dll
+3. PingWin is a UnityProject which can directly open in Unity and execute with added win compiled pingPlugin.dll, pingPluginManaged.dll
