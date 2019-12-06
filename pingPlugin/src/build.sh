@@ -15,19 +15,19 @@ banner() {
 rm -rf ./*.dylib
 rm -rf ./*.a
 rm -rf ./*.o
-rm -rf ./mac/*
-rm -rf ./mac/*.dylib
-rm -rf ./mac/*.a
+rm -rf ./../Assets/Plugins/mac/*
+rm -rf ./../Assets/Plugins/mac/*.dylib
+rm -rf ./../Assets/Plugins/mac/*.a
 rm -rf ./*.exe
 rm -rf ./*.dll
 
-if [ ! -e ./mac/libpingPlugin.1.dylib ] ||
+if [ ! -e ./../Assets/Plugins/mac/libpingPlugin.1.dylib ] ||
    [ "$(uname)" != "Darwin" ]
 then
 
   banner "pingPlugin"
 
-  if [ ! -e ./mac/libpingPlugin.1.dylib ] ||
+  if [ ! -e ./../Assets/Plugins/mac/libpingPlugin.1.dylib ] ||
   [ "$(uname)" != "Darwin" ]
   then
 
@@ -36,10 +36,11 @@ then
     if [ -e libpingPlugin.1.dylib ]
     then
 
-        [ -d ./mac ] || mkdir -p ./mac
-        mv libpingPlugin.1.dylib ./mac/libpingPlugin.1.dylib
-        mv libpingPlugin.a ./mac/libpingPlugin.a
-        mv pingPlugin.o ./mac/pingPlugin.o
+        [ -d ./../Assets/Plugins/mac ] || mkdir -p ./../Assets/Plugins/mac
+        mv libpingPlugin.1.dylib ./../Assets/Plugins/mac/libpingPlugin.1.dylib
+        mv libpingPlugin.a ./../Assets/Plugins/mac/libpingPlugin.a
+        mv pingPlugin.o ./../Assets/Plugins/mac/pingPlugin.o
+        mv pingPlugin ./../Assets/Plugins/mac/pingPlugin
 
 
     elif [ -e libpingPlugin.so ]
@@ -55,7 +56,7 @@ fi
 #--------------------------------------------
 banner ">>>>>  BUILD c# part  <<<<<"
 #--------------------------------------------
-cscmd="csc -define:MAC pingPluginManaged.cs -out:./mac/pingPluginManaged.dll"
+cscmd="csc -define:MAC pingPluginManaged.cs -out:./../Assets/Plugins/mac/pingPluginManaged.dll"
 eval $cscmd
 
 #--------------------------------------------
