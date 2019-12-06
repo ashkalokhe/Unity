@@ -10,6 +10,15 @@
 setlocal enabledelayedexpansion
 
 REM --------- pingPlugin
-mkdir .\..\assets\win
+if not exist ".\win" mkdir ".\win"
 
-cl /EHsc pingPlugin.cpp /link /dll /out:.\..\assets\win\pingPlugin.dll
+cl /EHsc pingPlugin.cpp /link /dll /out:.\win\pingPlugin.dll
+
+echo --------------------------------------------
+echo      ">>>>>  BUILD c# part (WIN)  <<<<<"
+echo --------------------------------------------
+csc -define:WIN pingPluginManaged.cs -out:pingPluginManaged.dll
+
+echo --------------------------------------------
+echo      ">>>>>  BUILD complete (WIN)  <<<<<"
+echo --------------------------------------------

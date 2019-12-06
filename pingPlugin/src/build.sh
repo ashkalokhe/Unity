@@ -18,24 +18,29 @@ rm -rf ./*.o
 rm -rf ./mac/*
 rm -rf ./mac/*.dylib
 rm -rf ./mac/*.a
+rm -rf ./*.exe
+rm -rf ./*.dll
 
-if [ ! -e ./mac/libpingPlugin.dylib ] ||
+if [ ! -e ./mac/libpingPlugin.1.dylib ] ||
    [ "$(uname)" != "Darwin" ]
 then
 
   banner "pingPlugin"
 
-  if [ ! -e ./mac/libpingPlugin.dylib ] ||
+  if [ ! -e ./mac/libpingPlugin.1.dylib ] ||
   [ "$(uname)" != "Darwin" ]
   then
 
     make "-j${make_parallel}"
 
-    if [ -e libpingPlugin.dylib ]
+    if [ -e libpingPlugin.1.dylib ]
     then
 
         [ -d ./mac ] || mkdir -p ./mac
-        mv libpingPlugin.dylib ./mac/libpingPlugin.dylib
+        mv libpingPlugin.1.dylib ./mac/libpingPlugin.1.dylib
+        mv libpingPlugin.a ./mac/libpingPlugin.a
+        mv pingPlugin.o ./mac/pingPlugin.o
+
 
     elif [ -e libpingPlugin.so ]
     then
@@ -46,6 +51,12 @@ then
 
 
 fi
+
+#--------------------------------------------
+banner ">>>>>  BUILD c# part  <<<<<"
+#--------------------------------------------
+cscmd="csc -define:MAC pingPluginManaged.cs -out:pingPluginManaged.dll"
+eval $cscmd
 
 #--------------------------------------------
 banner ">>>>>  BUILD COMPLETE  <<<<<"
