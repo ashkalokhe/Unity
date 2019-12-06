@@ -41,12 +41,12 @@ PingResult* Ping(const char address[])
     // stop timer
 
     // compute and print the elapsed time in seconds
-    res->time = ( std::clock() - start ) / CLOCKS_PER_SEC;
+    res->time = (( std::clock() - start )*1.0)/100.0;
 
     
     res->isDone = !x;
     if(x == 0)
-            printf("\nNative:Success\t isDone(%s) ip(%s) time(%d/s)\n", res->isDone == 0 ? "false" : "true", address, res->time);
+            printf("\nNative:Success\t isDone(%s) ip(%s) time(%d/ms)\n", res->isDone == 0 ? "false" : "true", address, res->time);
         else
             printf("\nNative:Failed\n");
     return res;
