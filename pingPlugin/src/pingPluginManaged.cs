@@ -22,6 +22,12 @@ public class PingPluginManaged
 
     public static void Main(string[] args)
     {
+        if (args == null || args.Length == 0)
+        {
+            Console.WriteLine("Please specify address to ping");
+            return;
+        }
+
         OperatingSystem os = Environment.OSVersion;
         PlatformID pid = os.Platform;
         switch (pid)
@@ -60,6 +66,7 @@ public class Ping
         string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         //https://www.mono-project.com/docs/advanced/pinvoke/
 
+/*
 #if MAC
         string lib_path = System.Environment.GetEnvironmentVariable("DYLD_LIBRARY_PATH");
         lib_path = lib_path + ";" + Path.Combine(assemblyFolder, "mac");
@@ -73,6 +80,8 @@ public class Ping
         Console.WriteLine($"New path={lib_path}");
         System.Environment.SetEnvironmentVariable("PATH ", lib_path);
 #endif
+*/
+
     }
 
     private Ping(string ipAddress)

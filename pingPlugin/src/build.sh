@@ -55,7 +55,7 @@ fi
 #--------------------------------------------
 banner ">>>>>  BUILD c# part  <<<<<"
 #--------------------------------------------
-cscmd="csc -define:MAC pingPluginManaged.cs -out:pingPluginManaged.dll"
+cscmd="csc -define:MAC pingPluginManaged.cs -out:./mac/pingPluginManaged.dll"
 eval $cscmd
 
 #--------------------------------------------
