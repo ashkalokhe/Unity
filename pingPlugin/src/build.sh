@@ -15,32 +15,32 @@ banner() {
 rm -rf ./*.dylib
 rm -rf ./*.a
 rm -rf ./*.o
-rm -rf ./../assets/mac/*
-rm -rf ./../assets/mac/*.dylib
-rm -rf ./../assets/mac/*.a
+rm -rf ./mac/*
+rm -rf ./mac/*.dylib
+rm -rf ./mac/*.a
 
-if [ ! -e ./../assets/mac/libpingPlugin.1.dylib ] ||
+if [ ! -e ./mac/libpingPlugin.dylib ] ||
    [ "$(uname)" != "Darwin" ]
 then
 
   banner "pingPlugin"
 
-  if [ ! -e ./../assets/mac/libpingPlugin.1.dylib ] ||
+  if [ ! -e ./mac/libpingPlugin.dylib ] ||
   [ "$(uname)" != "Darwin" ]
   then
 
     make "-j${make_parallel}"
 
-    if [ -e libpingPlugin.1.dylib ]
+    if [ -e libpingPlugin.dylib ]
     then
 
-        [ -d ./../assets/mac ] || mkdir -p ./../assets/mac
-        cp libpingPlugin.1.dylib ../assets/mac/libpingPlugin.1.dylib
+        [ -d ./mac ] || mkdir -p ./mac
+        mv libpingPlugin.dylib ./mac/libpingPlugin.dylib
 
-    elif [ -e libpingPlugin.1.so ]
+    elif [ -e libpingPlugin.so ]
     then
-        [ -d ./../assets/linux ] || mkdir -p ./../assets/linux
-        cp libpingPlugin.1.so ./../assets/linux/libpingPlugin.1.so
+        [ -d ./linux ] || mkdir -p ./linux
+        mv libpingPlugin.so ./linux/libpingPlugin.so
     fi
   fi
 
