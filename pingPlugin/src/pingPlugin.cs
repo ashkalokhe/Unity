@@ -3,7 +3,13 @@ using System;
 using System.Runtime.InteropServices;
 
 public class PingPlugin {
+#if MAC
   private const string Import = "pingPlugin";
+#endif
+
+#if WIN
+  private const string Import = ".\\..\\assets\\win\\pingPlugin.dll";
+#endif
   
   [DllImport(Import)]
   [return:MarshalAs(UnmanagedType.LPStruct)]
