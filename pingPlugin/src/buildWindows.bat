@@ -12,7 +12,7 @@ setlocal enabledelayedexpansion
 REM --------- pingPlugin
 if not exist ".\..\Assets\Plugins\win" mkdir ".\..\Assets\Plugins\win"
 
-cl /EHsc pingPlugin.cpp /link /machine:x64 /dll /out:.\..\Assets\Plugins\win\pingPlugin.dll
+cl /DWIN32 /EHsc pingPlugin.cpp /link /machine:x64 /dll /out:.\..\Assets\Plugins\win\pingPlugin.dll
 
 echo --------------------------------------------
 echo      ">>>>>  BUILD c# part (WIN)  <<<<<"

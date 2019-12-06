@@ -20,7 +20,11 @@ extern "C" {
 #define PINGPLUGIN_ERROR   0
 #define PINGPLUGIN_OK      1
 
+#ifdef WIN32
+  __declspec(dllexport) PingResult* Ping_Native(const char address[])
+#else
   extern PingResult* Ping_Native(const char address[])
+#endif
   {
       return (Ping(address));
   }
