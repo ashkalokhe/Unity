@@ -19,11 +19,9 @@ public class Test : MonoBehaviour
         Debug.Log(System.Environment.GetEnvironmentVariable("DYLD_FRAMEWORK_PATH"));
         Debug.Log(System.Environment.GetEnvironmentVariable("DYLD_FALLBACK_FRAMEWORK_PATH"));
         
-		//PingPluginManaged.Main(new string[]{"www.xfinity.com"});
 		var res = Ping.Execute("www.xfinity.com");
 		Debug.Log($"Script output - time={res.Time}, isDone={res.IsDone}, Address={res.IP}");
 		Debug.Log("call over");
-		//https://stackoverflow.com/questions/13103083/how-do-i-push-to-github-under-a-different-username
     }
 
     // Update is called once per frame
