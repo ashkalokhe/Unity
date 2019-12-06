@@ -1,1 +1,7 @@
-pingPlugin/Assets/Plugins/**/*
+pingPlugin/Assets/Plugins/**/*.a
+pingPlugin/Assets/Plugins/**/*.o*
+pingPlugin/Assets/Plugins/**/*.exp
+pingPlugin/Assets/Plugins/**/*.lib
+
+
+
